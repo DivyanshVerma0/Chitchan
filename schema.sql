@@ -1,21 +1,30 @@
+
+DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS boards;
+DROP TABLE IF EXISTS replies;
+
+
 CREATE TABLE posts (
-post_id integer PRIMARY KEY,
-image_file text,
-user text,
-date text,
-board text NOT NULL,
-post_text
+    post_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    image_file TEXT,
+    user TEXT,
+    date TEXT,
+    board TEXT NOT NULL,
+    post_text TEXT
 );
+
 CREATE TABLE boards (
-board_id integer PRIMARY KEY,
-board_short_name text NOT NULL,
-board_description text NOT NULL
+    board_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    short_name TEXT NOT NULL,
+    full_name TEXT NOT NULL
 );
-CREATE TABLE reply (
-reply_id integer PRIMARY KEY,
-board text NOT NULL,
-reply_image text,
-user text,
-date text,
-post_text text);
-CREATE TABLE replies (image_file text, user text, date text, board text, post_text text, replying_to text);
+
+CREATE TABLE replies (
+    reply_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    image_file TEXT,
+    user TEXT,
+    date TEXT,
+    board TEXT NOT NULL,
+    post_text TEXT,
+    replying_to INTEGER NOT NULL
+);
