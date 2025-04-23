@@ -92,7 +92,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
       mySnippets: [],
     }));
     handleClose();
-    router.push(`r/${name}`);
+    router.push(`c/${name}`);
     setLoading(false);
   };
 
@@ -133,7 +133,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
             left="10px"
             width="20px"
           >
-            r/
+            c/
           </Text>
           <Input
             position="relative"

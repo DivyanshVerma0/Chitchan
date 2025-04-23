@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
           <Flex padding="10px 16px">
             <Flex direction="column" mr={6}>
               <Text fontWeight={800} fontSize="16pt">
-                {communityData.id}
+                c/{communityData.id}
               </Text>
               <Text fontWeight={600} fontSize="10pt" color="gray.400">
                 r/{communityData.id}

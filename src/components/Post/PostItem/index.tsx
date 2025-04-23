@@ -139,12 +139,12 @@ const PostItem: React.FC<PostItemContentProps> = ({
                   ) : (
                     <Icon as={ChitchanLogo} fontSize={18} mr={1} color="green.500" />
                   )}
-                  <Link href={`/r/${post.communityId}`}>
+                  <Link href={`/c/${post.communityId}`}>
                     <Text
                       fontWeight={700}
                       _hover={{ textDecoration: "underline" }}
                       onClick={(event) => event.stopPropagation()}
-                    >{`r/${post.communityId}`}</Text>
+                    >{`c/${post.communityId}`}</Text>
                   </Link>
                   <Icon as={BsDot} color="gray.500" fontSize={4} />
                 </>

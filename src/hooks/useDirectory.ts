@@ -47,8 +47,8 @@ const useDirectory = () => {
       setDirectoryState((prev) => ({
         ...prev,
         selectedMenuItem: {
-          displayText: `r/${existingCommunity.id}`,
-          link: `r/${existingCommunity.id}`,
+          displayText: `c/${existingCommunity.id}`,
+          link: `c/${existingCommunity.id}`,
           icon: ChitchanLogo,
           iconColor: "blue.500",
           imageURL: existingCommunity.imageURL,
