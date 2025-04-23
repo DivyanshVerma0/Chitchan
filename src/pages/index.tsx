@@ -198,7 +198,7 @@ const Home: NextPage = () => {
 
   return (
     <PageContentLayout>
-      <>
+      <Stack>
         <CreatePostLink />
         {loading ? (
           <PostLoader />
@@ -223,7 +223,7 @@ const Home: NextPage = () => {
             ))}
           </Stack>
         )}
-      </>
+      </Stack>
       <Stack spacing={5} position="sticky" top="14px">
         <Recommendations />
         <Premium />
