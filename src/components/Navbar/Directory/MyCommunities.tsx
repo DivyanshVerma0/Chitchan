@@ -33,7 +33,7 @@ const MyCommunities: React.FC<MyCommunitiesProps> = ({ snippets, setOpen }) => {
           displayText={`r/${snippet.communityId}`}
           link={`r/${snippet.communityId}`}
           icon={ChitchanLogo}
-          iconColor="blue.500"
+          iconColor="green.500"
         />
       ))}
     </Box>

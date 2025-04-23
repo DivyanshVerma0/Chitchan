@@ -137,7 +137,7 @@ const PostItem: React.FC<PostItemContentProps> = ({
                       mr={2}
                     />
                   ) : (
-                    <Icon as={ChitchanLogo} fontSize={18} mr={1} color="blue.500" />
+                    <Icon as={ChitchanLogo} fontSize={18} mr={1} color="green.500" />
                   )}
                   <Link href={`/r/${post.communityId}`}>
                     <Text

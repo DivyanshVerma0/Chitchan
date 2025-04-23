@@ -14,13 +14,13 @@ const Premium: React.FC = () => {
       borderColor="gray.300"
     >
       <Flex mb={2}>
-        <Icon as={GiCheckedShield} fontSize={26} color="brand.100" mt={2} />
+        <Icon as={GiCheckedShield} fontSize={26} color="green.500" mt={2} />
         <Stack spacing={1} fontSize="9pt" pl={2}>
           <Text fontWeight={600}>Chitchan Premium</Text>
           <Text>The best Chitchan experience, with monthly Coins</Text>
         </Stack>
       </Flex>
-      <Button height="30px" bg="brand.100">
+      <Button height="30px" colorScheme="green">
         Try Now
       </Button>
     </Flex>

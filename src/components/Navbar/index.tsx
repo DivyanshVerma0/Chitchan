@@ -25,6 +25,13 @@ const Navbar: React.FC = () => {
       height="44px"
       padding="6px 12px"
       justifyContent={{ md: "space-between" }}
+      position="fixed"
+      top="0"
+      left="0"
+      right="0"
+      zIndex={999}
+      borderBottom="1px solid"
+      borderColor="gray.200"
     >
       <Flex
         align="center"

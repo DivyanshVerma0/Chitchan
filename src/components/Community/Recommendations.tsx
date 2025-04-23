@@ -63,7 +63,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
         align="flex-end"
         color="white"
         p="6px 10px"
-        bg="blue.500"
+        bg="green.500"
         height="70px"
         borderRadius="4px 4px 0px 0px"
         fontWeight={600}
@@ -146,6 +146,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
                           onJoinLeaveCommunity(item, isJoined);
                         }}
                         variant={isJoined ? "outline" : "solid"}
+                        colorScheme="green"
                       >
                         {isJoined ? "Joined" : "Join"}
                       </Button>
@@ -155,7 +156,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
               );
             })}
             <Box p="10px 20px">
-              <Button height="30px" width="100%">
+              <Button height="30px" width="100%" colorScheme="green">
                 View All
               </Button>
             </Box>

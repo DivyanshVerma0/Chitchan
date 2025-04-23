@@ -17,7 +17,7 @@ const PersonalHome: React.FC = () => {
         align="flex-end"
         color="white"
         p="6px 10px"
-        bg="blue.500"
+        bg="green.500"
         height="34px"
         borderRadius="4px 4px 0px 0px"
         fontWeight={600}
@@ -33,8 +33,8 @@ const PersonalHome: React.FC = () => {
           <Text fontSize="9pt">
             Your personal Chitchan frontpage, built for you.
           </Text>
-          <Button height="30px">Create Post</Button>
-          <Button variant="outline" height="30px">
+          <Button height="30px" colorScheme="green">Create Post</Button>
+          <Button variant="outline" height="30px" colorScheme="green">
             Create Community
           </Button>
         </Stack>

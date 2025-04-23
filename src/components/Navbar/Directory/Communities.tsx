@@ -67,7 +67,7 @@ const Communities: React.FC<CommunitiesProps> = ({ menuOpen }) => {
             icon={ChitchanLogo}
             displayText={`r/${snippet.communityId}`}
             link={`/r/${snippet.communityId}`}
-            iconColor="blue.500"
+            iconColor="green.500"
             imageURL={snippet.imageURL}
           />
         ))}

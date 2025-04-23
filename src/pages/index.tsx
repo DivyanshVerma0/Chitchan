@@ -26,6 +26,7 @@ import { auth, firestore } from "../firebase/clientApp";
 import usePosts from "../hooks/usePosts";
 import Premium from "../components/Community/Premium";
 import PersonalHome from "../components/Community/PersonalHome";
+import CommunitiesSidebar from "../components/Community/CommunitiesSidebar";
 
 const Home: NextPage = () => {
   const [user, loadingUser] = useAuthState(auth);
@@ -198,6 +199,7 @@ const Home: NextPage = () => {
 
   return (
     <PageContentLayout>
+      <CommunitiesSidebar />
       <Stack>
         <CreatePostLink />
         {loading ? (

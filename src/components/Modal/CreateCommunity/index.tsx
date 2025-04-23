@@ -160,7 +160,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
             </Text>
             <Stack spacing={2} pt={1}>
               <Checkbox
-                colorScheme="blue"
+                colorScheme="green"
                 name="public"
                 isChecked={communityType === "public"}
                 onChange={onCommunityTypeChange}
@@ -176,7 +176,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
                 </Flex>
               </Checkbox>
               <Checkbox
-                colorScheme="blue"
+                colorScheme="green"
                 name="restricted"
                 isChecked={communityType === "restricted"}
                 onChange={onCommunityTypeChange}
@@ -193,7 +193,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
                 </Flex>
               </Checkbox>
               <Checkbox
-                colorScheme="blue"
+                colorScheme="green"
                 name="private"
                 isChecked={communityType === "private"}
                 onChange={onCommunityTypeChange}
