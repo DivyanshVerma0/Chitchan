@@ -13,7 +13,6 @@
   --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
-
 [data-theme='dark'] {
   --bg-main: #1a202c;
   --bg-secondary: #2d3748;
@@ -106,3 +105,4 @@ button {
   opacity: 1 !important;
   backdrop-filter: none !important;
 } 
+
