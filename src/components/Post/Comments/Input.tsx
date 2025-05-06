@@ -1,5 +1,5 @@
 import React, { MouseEventHandler, useState } from "react";
-import { Flex, Textarea, Button, Text } from "@chakra-ui/react";
+import { Flex, Textarea, Button, Text, useColorMode } from "@chakra-ui/react";
 import { User } from "firebase/auth";
 import AuthButtons from "../../Navbar/RightContent/AuthButtons";
 
@@ -18,13 +18,14 @@ const CommentInput: React.FC<CommentInputProps> = ({
   user,
   onCreateComment,
 }) => {
+  const { colorMode } = useColorMode();
   return (
     <Flex direction="column" position="relative">
       {user ? (
         <>
-          <Text mb={1}>
+          <Text mb={1} color={colorMode === "dark" ? "dark.100" : undefined}>
             Comment as{" "}
-            <span style={{ color: "#3182CE" }}>
+            <span style={{ color: colorMode === "dark" ? "brand.100" : "#3182CE" }}>
               {user?.email?.split("@")[0]}
             </span>
           </Text>
@@ -36,11 +37,15 @@ const CommentInput: React.FC<CommentInputProps> = ({
             borderRadius={4}
             minHeight="160px"
             pb={10}
-            _placeholder={{ color: "gray.500" }}
+            bg={colorMode === "dark" ? "dark.card" : "white"}
+            color={colorMode === "dark" ? "dark.100" : undefined}
+            borderColor={colorMode === "dark" ? "dark.300" : "gray.200"}
+            _placeholder={{ color: colorMode === "dark" ? "dark.200" : "gray.500" }}
             _focus={{
               outline: "none",
-              bg: "white",
-              border: "1px solid black",
+              bg: colorMode === "dark" ? "dark.400" : "white",
+              border: "1px solid",
+              borderColor: colorMode === "dark" ? "brand.100" : "black",
             }}
           />
           <Flex
@@ -49,7 +54,7 @@ const CommentInput: React.FC<CommentInputProps> = ({
             right={0.1}
             bottom="1px"
             justify="flex-end"
-            bg="gray.100"
+            bg={colorMode === "dark" ? "dark.400" : "gray.100"}
             p="6px 8px"
             borderRadius="0px 0px 4px 4px"
           >
@@ -58,6 +63,7 @@ const CommentInput: React.FC<CommentInputProps> = ({
               disabled={!comment.length}
               isLoading={loading}
               onClick={() => onCreateComment(comment)}
+              colorScheme={colorMode === "dark" ? "green" : undefined}
             >
               Comment
             </Button>
@@ -69,10 +75,10 @@ const CommentInput: React.FC<CommentInputProps> = ({
           justify="space-between"
           borderRadius={2}
           border="1px solid"
-          borderColor="gray.100"
+          borderColor={colorMode === "dark" ? "dark.300" : "gray.100"}
           p={4}
         >
-          <Text fontWeight={600}>Log in or sign up to leave a comment</Text>
+          <Text fontWeight={600} color={colorMode === "dark" ? "dark.100" : undefined}>Log in or sign up to leave a comment</Text>
           <AuthButtons />
         </Flex>
       )}

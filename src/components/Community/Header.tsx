@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Flex, Icon, Text, Image } from "@chakra-ui/react";
+import { Box, Button, Flex, Icon, Text, Image, useColorMode } from "@chakra-ui/react";
 import { Community, communityState } from "../../atoms/communitiesAtom";
 import useCommunityData from "../../hooks/useCommunityData";
 import { useSetRecoilState } from "recoil";
@@ -18,11 +18,12 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
   const isJoined = !!communityStateValue.mySnippets.find(
     (item) => item.communityId === communityData.id
   );
+  const { colorMode } = useColorMode();
 
   return (
     <Flex direction="column" width="100%" height="146px">
-      <Box height="50%" bg="blue.400" />
-      <Flex justifyContent="center" bg="white" height="50%">
+      <Box height="50%" bg={colorMode === "dark" ? "dark.400" : "brand.100"} />
+      <Flex justifyContent="center" bg={colorMode === "dark" ? "dark.card" : "white"} height="50%">
         <Flex width="95%" maxWidth="860px">
           {/* IMAGE URL IS ADDED AT THE VERY END BEFORE DUMMY DATA-USE ICON AT FIRST */}
           {communityStateValue.currentCommunity.imageURL ? (

@@ -17,8 +17,8 @@ const Moderating: React.FC<ModeratingProps> = ({ snippets }) => {
       {snippets.map((snippet) => (
         <MenuListItem
           key={snippet.communityId}
-          displayText={`r/${snippet.communityId}`}
-          link={`r/${snippet.communityId}`}
+          displayText={`c/${snippet.communityId}`}
+          link={`c/${snippet.communityId}`}
           icon={ChitchanLogo}
           iconColor="brand.100"
         />

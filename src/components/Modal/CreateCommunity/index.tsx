@@ -92,7 +92,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
       mySnippets: [],
     }));
     handleClose();
-    router.push(`c/${name}`);
+    router.push(`/c/${name}`);
     setLoading(false);
   };
 
