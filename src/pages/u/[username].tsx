@@ -145,7 +145,7 @@ const UserProfilePage: React.FC = () => {
         </Flex>
       </Box>
 
-      {/* Posts Section */}
+      {/* Posts Section  */}
       <Box 
         mt={4} 
         p={4} 

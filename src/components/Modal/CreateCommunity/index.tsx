@@ -68,25 +68,54 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
           throw new Error(`Sorry, /r${name} is taken. Try another.`);
         }
 
+        // Create community document
         transaction.set(communityDocRef, {
           creatorId: userId,
           createdAt: serverTimestamp(),
           numberOfMembers: 1,
-          privacyType: "public",
+          privacyType: communityType,
+          imageURL: "",
+          name: name,
+          description: "",
+          rules: [],
+          moderators: [userId],
         });
 
+        // Create community snippet for creator
         transaction.set(
           doc(firestore, `users/${userId}/communitySnippets`, name),
           {
             communityId: name,
             isModerator: true,
+            imageURL: "",
+            name: name,
           }
         );
       });
+
+      // Update local state
+      setSnippetState((prev) => ({
+        ...prev,
+        mySnippets: [
+          ...prev.mySnippets,
+          {
+            communityId: name,
+            isModerator: true,
+            imageURL: "",
+            name: name,
+          },
+        ],
+      }));
+
+      handleClose();
+      router.push(`/r/${name}`);
     } catch (error: any) {
       console.log("Transaction error", error);
       setNameError(error.message);
+    } finally {
+      setLoading(false);
     }
+
     setSnippetState((prev) => ({
       ...prev,
       mySnippets: [],
@@ -94,6 +123,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
     handleClose();
     router.push(`/c/${name}`);
     setLoading(false);
+
   };
 
   const onCommunityTypeChange = (

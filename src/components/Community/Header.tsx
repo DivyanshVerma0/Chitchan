@@ -9,10 +9,8 @@ type HeaderProps = {
   communityData: Community;
 };
 
-
 const Header: React.FC<HeaderProps> = ({ communityData }) => {
 
-  
   const { communityStateValue, loading, error, onJoinLeaveCommunity } =
     useCommunityData(!!communityData);
   const isJoined = !!communityStateValue.mySnippets.find(
@@ -75,4 +73,3 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
   );
 };
 export default Header;
-

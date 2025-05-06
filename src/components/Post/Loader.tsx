@@ -1,6 +1,7 @@
 import React from "react";
 import { Stack, Box, SkeletonText, Skeleton } from "@chakra-ui/react";
 
+
 const PostLoader: React.FC = () => {
   return (
     <Stack spacing={6}>
@@ -18,3 +19,5 @@ const PostLoader: React.FC = () => {
   );
 };
 export default PostLoader;
+
+

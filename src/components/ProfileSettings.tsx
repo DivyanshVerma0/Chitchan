@@ -24,6 +24,7 @@ export const ProfileSettings = () => {
   const [profile, setProfile] = useState<Partial<UserProfile>>({});
   const [isEditing, setIsEditing] = useState(false);
   const toast = useToast();
+  const [formErrors, setFormErrors] = useState<{ displayName?: string; website?: string }>({});
 
   useEffect(() => {
     loadProfile();
@@ -77,8 +78,26 @@ export const ProfileSettings = () => {
     }
   };
 
+  const validateForm = () => {
+    const errors: { displayName?: string; website?: string } = {};
+    if (!profile.displayName || profile.displayName.trim() === "") {
+      errors.displayName = "Display Name is required.";
+    }
+    if (profile.website && profile.website.trim() !== "") {
+      try {
+        // Throws if not a valid URL
+        new URL(profile.website);
+      } catch {
+        errors.website = "Website must be a valid URL (include http:// or https://).";
+      }
+    }
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateForm()) return;
     const success = await updateProfile(profile);
     
     if (success) {
@@ -134,7 +153,7 @@ export const ProfileSettings = () => {
             </Box>
           </Box>
 
-          <FormControl>
+          <FormControl isInvalid={!!formErrors.displayName}>
             <FormLabel>Display Name</FormLabel>
             <Input
               name="displayName"
@@ -142,6 +161,9 @@ export const ProfileSettings = () => {
               onChange={handleInputChange}
               isDisabled={!isEditing}
             />
+            {formErrors.displayName && (
+              <Text color="red.500" fontSize="sm">{formErrors.displayName}</Text>
+            )}
           </FormControl>
 
           <FormControl>
@@ -165,7 +187,7 @@ export const ProfileSettings = () => {
             />
           </FormControl>
 
-          <FormControl>
+          <FormControl isInvalid={!!formErrors.website}>
             <FormLabel>Website</FormLabel>
             <Input
               name="website"
@@ -173,6 +195,9 @@ export const ProfileSettings = () => {
               onChange={handleInputChange}
               isDisabled={!isEditing}
             />
+            {formErrors.website && (
+              <Text color="red.500" fontSize="sm">{formErrors.website}</Text>
+            )}
           </FormControl>
 
           <Text fontWeight="bold" mt={4}>Social Links</Text>
@@ -265,4 +290,4 @@ export const ProfileSettings = () => {
       </form>
     </Box>
   );
-}; 
+};

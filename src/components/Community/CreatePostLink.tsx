@@ -28,7 +28,6 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
     router.push(`/c/${router.query.community}/submit`);
   };
 
-  
   return (
     <Flex
       justify="space-evenly"
@@ -81,5 +80,3 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
   );
 };
 export default CreatePostLink;
-
-
