@@ -6,40 +6,42 @@ import { GiCakeSlice } from "react-icons/gi";
 import { format } from "date-fns";
 import { useRouter } from "next/router";
 import { FaRedditAlien } from "react-icons/fa";
+import { useUserProfile } from '../../hooks/useUserProfile';
 
 const UserProfilePage: React.FC = () => {
   const [user] = useAuthState(auth);
   const router = useRouter();
   const { colorMode } = useColorMode();
   const { username } = router.query;
+  const { getUserProfile } = useUserProfile();
+  const [profile, setProfile] = React.useState<any>(null);
 
   // Format the user's join date
   const joinDate = user?.metadata.creationTime 
     ? format(new Date(user.metadata.creationTime), "MMMM d, yyyy")
     : null;
 
+  React.useEffect(() => {
+    async function fetchProfile() {
+      const p = await getUserProfile();
+      setProfile(p);
+    }
+    if (user) fetchProfile();
+  }, [user]);
+
   return (
     <Flex direction="column" width="100%" maxWidth="975px" mx="auto" pt={3}>
-      {user && (
-        <Box 
-          mb={4} 
-          p={3} 
-          bg={colorMode === "dark" ? "#1A1A1B" : "gray.100"}
-          color={colorMode === "dark" ? "#D7DADC" : "gray.800"}
-          borderRadius="md" 
-          textAlign="center"
-          cursor="pointer"
-          onClick={() => router.push("/profile/settings")}
-          _hover={{ 
-            bg: colorMode === "dark" ? "#272729" : "gray.200",
-            borderColor: colorMode === "dark" ? "#D7DADC" : "gray.400"
-          }}
-          border="1px solid"
-          borderColor={colorMode === "dark" ? "#343536" : "gray.200"}
-        >
-          <Text fontWeight="bold">Click here to go to Profile Settings</Text>
-        </Box>
-      )}
+      <Box
+        mb={4} 
+        p={3} 
+        bg={colorMode === "dark" ? "#1A1A1B" : "gray.100"}
+        color={colorMode === "dark" ? "#D7DADC" : "gray.800"}
+        borderRadius="md" 
+        textAlign="center"
+        border="none"
+      >
+        {/* Empty box for spacing, or remove this Box entirely if not needed */}
+      </Box>
       <Box
         bg={colorMode === "dark" ? "#1A1A1B" : "white"}
         borderRadius="4px"
@@ -57,6 +59,13 @@ const UserProfilePage: React.FC = () => {
             {user?.photoURL ? (
               <Image
                 src={user.photoURL}
+                alt="Profile"
+                boxSize="80px"
+                objectFit="cover"
+              />
+            ) : profile?.avatarURL ? (
+              <Image
+                src={profile.avatarURL}
                 alt="Profile"
                 boxSize="80px"
                 objectFit="cover"

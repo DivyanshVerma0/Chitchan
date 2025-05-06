@@ -6,6 +6,7 @@ import {
   SkeletonText,
   Stack,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 import { User } from "firebase/auth";
 import {
@@ -44,6 +45,7 @@ const Comments: React.FC<CommentsProps> = ({
   const [deleteLoading, setDeleteLoading] = useState("");
   const setAuthModalState = useSetRecoilState(authModalState);
   const setPostState = useSetRecoilState(postState);
+  const { colorMode } = useColorMode();
 
   const onCreateComment = async (comment: string) => {
     if (!user) {
@@ -169,7 +171,7 @@ const Comments: React.FC<CommentsProps> = ({
   }, []);
 
   return (
-    <Box bg="white" p={2} borderRadius="0px 0px 4px 4px">
+    <Box bg={colorMode === "dark" ? "dark.card" : "white"} p={2} borderRadius="0px 0px 4px 4px">
       <Flex
         direction="column"
         pl={10}
@@ -177,6 +179,7 @@ const Comments: React.FC<CommentsProps> = ({
         mb={6}
         fontSize="10pt"
         width="100%"
+        color={colorMode === "dark" ? "dark.100" : undefined}
       >
         <CommentInput
           comment={comment}
@@ -190,7 +193,7 @@ const Comments: React.FC<CommentsProps> = ({
         {commentFetchLoading ? (
           <>
             {[0, 1, 2].map((item) => (
-              <Box key={item} padding="6" bg="white">
+              <Box key={item} padding="6" bg={colorMode === "dark" ? "dark.400" : "white"}>
                 <SkeletonCircle size="10" />
                 <SkeletonText mt="4" noOfLines={2} spacing="4" />
               </Box>

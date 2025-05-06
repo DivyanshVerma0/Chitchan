@@ -24,6 +24,7 @@ import {
 import { Post } from "../../atoms/postsAtom";
 import Link from "next/link";
 import moment from "moment";
+import { ChitchanLogo } from "../../components/Icons/ChitchanLogo";
 
 type PostItemProps = {
   post: Post;
@@ -67,7 +68,7 @@ const PostItem: React.FC<PostItemProps> = ({
       if (!success) throw new Error("Failed to delete post");
 
       if (singlePostPage) {
-        router?.push(`/r/${post.communityId}`);
+        router?.push(`/c/${post.communityId}`);
       }
     } catch (error: any) {
       console.log("Error deleting post", error.message);
@@ -139,14 +140,14 @@ const PostItem: React.FC<PostItemProps> = ({
                       mr={2}
                     />
                   ) : (
-                    <Icon as={FaReddit} fontSize={18} mr={1} color="blue.500" />
+                    <Icon as={ChitchanLogo} fontSize={18} mr={1} color="brand.100" />
                   )}
-                  <Link href={`r/${post.communityId}`}>
+                  <Link href={`/c/${post.communityId}`}>
                     <Text
                       fontWeight={700}
                       _hover={{ textDecoration: "underline" }}
                       onClick={(event) => event.stopPropagation()}
-                    >{`r/${post.communityId}`}</Text>
+                    >{`c/${post.communityId}`}</Text>
                   </Link>
                   <Icon as={BsDot} color="gray.500" fontSize={8} />
                 </>

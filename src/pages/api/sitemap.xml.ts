@@ -22,7 +22,7 @@ const Sitemap = async (req: NextApiRequest, res: NextApiResponse) => {
   </url>
   ${communities.map(community => `
   <url>
-    <loc>https://chitchan.com/r/${community}</loc>
+    <loc>https://chitchan.com/c/${community}</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>`).join('')}

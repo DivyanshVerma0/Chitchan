@@ -115,6 +115,15 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
     } finally {
       setLoading(false);
     }
+
+    setSnippetState((prev) => ({
+      ...prev,
+      mySnippets: [],
+    }));
+    handleClose();
+    router.push(`/c/${name}`);
+    setLoading(false);
+
   };
 
   const onCommunityTypeChange = (

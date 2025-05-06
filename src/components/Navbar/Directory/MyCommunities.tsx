@@ -30,8 +30,8 @@ const MyCommunities: React.FC<MyCommunitiesProps> = ({ snippets, setOpen }) => {
       {snippets.map((snippet) => (
         <MenuListItem
           key={snippet.communityId}
-          displayText={`r/${snippet.communityId}`}
-          link={`r/${snippet.communityId}`}
+          displayText={`c/${snippet.communityId}`}
+          link={`c/${snippet.communityId}`}
           icon={ChitchanLogo}
           iconColor="blue.500"
         />

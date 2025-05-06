@@ -11,6 +11,7 @@ import {
   Text,
   Image,
   Spinner,
+  useColorMode,
 } from "@chakra-ui/react";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 import { RiCakeLine } from "react-icons/ri";
@@ -42,6 +43,7 @@ const About: React.FC<AboutProps> = ({
   const router = useRouter();
   const selectFileRef = useRef<HTMLInputElement>(null);
   const setCommunityStateValue = useSetRecoilState(communityState);
+  const { colorMode } = useColorMode();
 
   // April 24 - moved this logic to custom hook in tutorial build (useSelectFile)
   const [selectedFile, setSelectedFile] = useState<string>();
@@ -98,15 +100,15 @@ const About: React.FC<AboutProps> = ({
         align="center"
         p={3}
         color="white"
-        bg="blue.400"
+        bg={colorMode === "dark" ? "dark.300" : "brand.100"}
         borderRadius="4px 4px 0px 0px"
       >
-        <Text fontSize="10pt" fontWeight={700}>
+        <Text fontSize="10pt" fontWeight={700} color={colorMode === "dark" ? "dark.100" : "white"}>
           About Community
         </Text>
-        <Icon as={HiOutlineDotsHorizontal} cursor="pointer" />
+        <Icon as={HiOutlineDotsHorizontal} cursor="pointer" color={colorMode === "dark" ? "dark.100" : "white"} />
       </Flex>
-      <Flex direction="column" p={3} bg="white" borderRadius="0px 0px 4px 4px">
+      <Flex direction="column" p={3} bg={colorMode === "dark" ? "dark.card" : "white"} borderRadius="0px 0px 4px 4px" border="1px solid" borderColor={colorMode === "dark" ? "dark.300" : "gray.200"}>
         {loading ? (
           <Stack mt={2}>
             <SkeletonCircle size="10" />
@@ -119,15 +121,15 @@ const About: React.FC<AboutProps> = ({
           <>
             {user?.uid === communityData?.creatorId && (
               <Box
-                bg="gray.100"
+                bg={colorMode === "dark" ? "dark.400" : "gray.100"}
                 width="100%"
                 p={2}
                 borderRadius={4}
                 border="1px solid"
-                borderColor="gray.300"
+                borderColor={colorMode === "dark" ? "dark.300" : "gray.300"}
                 cursor="pointer"
               >
-                <Text fontSize="9pt" fontWeight={700} color="blue.500">
+                <Text fontSize="9pt" fontWeight={700} color={colorMode === "dark" ? "dark.100" : "brand.100"}>
                   Add description
                 </Text>
               </Box>
@@ -178,7 +180,7 @@ const About: React.FC<AboutProps> = ({
                     <Text fontWeight={600}>Admin</Text>
                     <Flex align="center" justify="space-between">
                       <Text
-                        color="blue.500"
+                        color={colorMode === "dark" ? "brand.100" : "brand.100"}
                         cursor="pointer"
                         _hover={{ textDecoration: "underline" }}
                         onClick={() => selectFileRef.current?.click()}
