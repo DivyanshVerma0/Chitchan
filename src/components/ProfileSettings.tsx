@@ -20,16 +20,27 @@ import { UserProfile } from '../types/user';
 import { FaCamera } from 'react-icons/fa';
 
 export const ProfileSettings = () => {
+  // Custom hook to get and update user profile data
   const { getUserProfile, updateProfile, uploadAvatar, loading, error } = useUserProfile();
+
+  // State to store the user's profile information
   const [profile, setProfile] = useState<Partial<UserProfile>>({});
+  
+  // Toggle to enable/disable editing mode
   const [isEditing, setIsEditing] = useState(false);
+
+  // Chakra UI toast for user notifications
   const toast = useToast();
+
+  // Form validation errors
   const [formErrors, setFormErrors] = useState<{ displayName?: string; website?: string }>({});
 
+  // Load profile when component mounts
   useEffect(() => {
     loadProfile();
   }, []);
 
+  // Fetch user profile from backend
   const loadProfile = async () => {
     const userProfile = await getUserProfile();
     if (userProfile) {
@@ -37,6 +48,7 @@ export const ProfileSettings = () => {
     }
   };
 
+  // Handle changes to text inputs (e.g., name, location, website)
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setProfile(prev => ({
@@ -45,6 +57,7 @@ export const ProfileSettings = () => {
     }));
   };
 
+  // Handle changes to social media links
   const handleSocialLinkChange = (platform: string, value: string) => {
     setProfile(prev => ({
       ...prev,
@@ -55,6 +68,7 @@ export const ProfileSettings = () => {
     }));
   };
 
+  // Handle changes to user preferences (toggles)
   const handlePreferenceChange = (preference: string, value: boolean) => {
     setProfile(prev => ({
       ...prev,
@@ -65,6 +79,7 @@ export const ProfileSettings = () => {
     }));
   };
 
+  // Handle avatar file upload and update profile avatar URL
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -78,6 +93,7 @@ export const ProfileSettings = () => {
     }
   };
 
+  // Validate form inputs before submission
   const validateForm = () => {
     const errors: { displayName?: string; website?: string } = {};
     if (!profile.displayName || profile.displayName.trim() === "") {
@@ -85,8 +101,7 @@ export const ProfileSettings = () => {
     }
     if (profile.website && profile.website.trim() !== "") {
       try {
-        // Throws if not a valid URL
-        new URL(profile.website);
+        new URL(profile.website); // Throws if invalid
       } catch {
         errors.website = "Website must be a valid URL (include http:// or https://).";
       }
@@ -95,6 +110,7 @@ export const ProfileSettings = () => {
     return Object.keys(errors).length === 0;
   };
 
+  // Submit updated profile to backend
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -123,6 +139,7 @@ export const ProfileSettings = () => {
     <Box maxW="600px" mx="auto" p={4}>
       <form onSubmit={handleSubmit}>
         <VStack spacing={4} align="stretch">
+          {/* Avatar Upload Section */}
           <Box textAlign="center">
             <Box position="relative" display="inline-block">
               <Avatar
@@ -153,6 +170,7 @@ export const ProfileSettings = () => {
             </Box>
           </Box>
 
+          {/* Display Name Field */}
           <FormControl isInvalid={!!formErrors.displayName}>
             <FormLabel>Display Name</FormLabel>
             <Input
@@ -166,6 +184,7 @@ export const ProfileSettings = () => {
             )}
           </FormControl>
 
+          {/* Bio Field */}
           <FormControl>
             <FormLabel>Bio</FormLabel>
             <Textarea
@@ -177,6 +196,7 @@ export const ProfileSettings = () => {
             />
           </FormControl>
 
+          {/* Location Field */}
           <FormControl>
             <FormLabel>Location</FormLabel>
             <Input
@@ -187,6 +207,7 @@ export const ProfileSettings = () => {
             />
           </FormControl>
 
+          {/* Website Field */}
           <FormControl isInvalid={!!formErrors.website}>
             <FormLabel>Website</FormLabel>
             <Input
@@ -200,6 +221,7 @@ export const ProfileSettings = () => {
             )}
           </FormControl>
 
+          {/* Social Links Section */}
           <Text fontWeight="bold" mt={4}>Social Links</Text>
           <VStack spacing={2}>
             <FormControl>
@@ -228,6 +250,7 @@ export const ProfileSettings = () => {
             </FormControl>
           </VStack>
 
+          {/* Preferences Section */}
           <Text fontWeight="bold" mt={4}>Preferences</Text>
           <VStack spacing={2}>
             <FormControl display="flex" alignItems="center">
@@ -256,6 +279,7 @@ export const ProfileSettings = () => {
             </FormControl>
           </VStack>
 
+          {/* Action Buttons */}
           <HStack spacing={4} mt={4}>
             {isEditing ? (
               <>
