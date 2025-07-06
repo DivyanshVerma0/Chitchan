@@ -1,0 +1,30 @@
+name: Welcome New Pull Request
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  send-welcome-message:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post welcome message
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            await github.rest.issues.createComment({
+              issue_number: pr.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `Dear @${pr.user.login},
+
+Thank you for your contribution to the ChitChan repository!
+
+Your pull request has been received and will be reviewed shortly.
+
+Please ensure it follows the project's guidelines as outlined in the CONTRIBUTING.md file.
+
+Best regards,  
+The ChitChan Team`
+            });

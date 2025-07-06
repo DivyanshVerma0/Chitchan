@@ -1,0 +1,108 @@
+:root {
+  /* Light theme (default) */
+  --bg-main: #f8f9fa;
+  --bg-secondary: #ffffff;
+  --bg-navbar: #ffffff;
+  --bg-card: #ffffff;
+  --bg-input: #ffffff;
+  --bg-dropdown: #ffffff;
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --border-color: #e2e8f0;
+  --hover-color: #edf2f7;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+
+[data-theme='dark'] {
+  --bg-main: #1a202c;
+  --bg-secondary: #2d3748;
+  --bg-navbar: #2d3748;
+  --bg-card: #2d3748;
+  --bg-input: #4a5568;
+  --bg-dropdown: #2d3748;
+  --text-primary: #ffffff;
+  --text-secondary: #cbd5e0;
+  --border-color: #4a5568;
+  --hover-color: #4a5568;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Apply theme to Chakra components */
+[data-theme='dark'] .chakra-ui-light,
+[data-theme='light'] .chakra-ui-dark {
+  display: none;
+}
+
+/* Global styles */
+body {
+  background-color: var(--bg-main) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Navbar styles */
+nav, header {
+  background-color: var(--bg-navbar) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+}
+
+/* Card styles */
+.chakra-card, 
+.chakra-modal__content,
+.chakra-menu__menu-list {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Menu and Dropdown styles */
+.chakra-menu__menu-list,
+[role="menu"],
+[role="listbox"] {
+  background-color: var(--bg-dropdown) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+/* Menu items */
+.chakra-menu__menu-item,
+[role="menuitem"] {
+  background-color: var(--bg-dropdown) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Input styles */
+input, textarea, select {
+  background-color: var(--bg-input) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Button styles */
+button {
+  color: var(--text-primary) !important;
+}
+
+/* Post items and community items */
+.post-item, 
+.community-item {
+  background-color: var(--bg-card) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Hover effects */
+.chakra-menu__menu-item:hover,
+[role="menuitem"]:hover {
+  background-color: var(--hover-color) !important;
+}
+
+/* Modal styles */
+.chakra-modal__content {
+  background-color: var(--bg-card) !important;
+}
+
+
+/* Ensure no transparency in dropdowns */
+.chakra-menu__menu-list {
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+} 
